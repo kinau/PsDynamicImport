@@ -13,6 +13,11 @@ function DownloadFile(
     if ($null -eq $OutputDirectory -or $OutputDirectory.Length -eq 0){
         $OutputDirectory = "$PSScriptRoot"
     }
+
+    if (-not (Test-Path $OutputDirectory)) {
+        New-Item -ItemType Directory $OutputDirectory
+    }
+
     $output = "$OutputDirectory\$Output"
     $start_time = Get-Date
 
